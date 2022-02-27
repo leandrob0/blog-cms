@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { clickedPost } from "../features/post";
+import { clickedPost } from "../features/postId";
 import { useNavigate } from "react-router-dom";
 
 const SinglePost = ({ title, text, pub, id }) => {

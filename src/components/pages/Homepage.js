@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getAllPosts } from "../../services/posts";
 import { useDispatch } from "react-redux";
-import { resetClicked } from "../../features/post";
+import { resetClicked } from "../../features/postId";
 
 import SinglePost from "../SinglePost";
 
