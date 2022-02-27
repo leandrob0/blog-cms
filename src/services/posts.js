@@ -2,8 +2,8 @@ import axios from "axios";
 const baseUrl = "/api/posts";
 
 // Returns X last post published (sorted by update time).
-export const getLastXpublishedPosts = async (limit) => {
-    const result = await axios.get(`${baseUrl}/${limit}/sorted`);
+export const getAllPosts = async (token) => {
+    const result = await axios.get(`${baseUrl}`, {headers: {Authorization: `Bearer ${token}`}});
     return result.data;
 }
 

@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialStateValue = JSON.parse(localStorage.getItem("postIdCMS")) || { postId: "" };
 
 export const postSlice = createSlice({
-  name: "post",
+  name: "postId",
   initialState: { value: initialStateValue },
   reducers: {
     clickedPost: (state, action) => {

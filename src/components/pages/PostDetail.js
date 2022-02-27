@@ -7,7 +7,7 @@ import Comment from "../Comment";
 const PostDetail = () => {
   const [loading, setLoading] = useState(false);
   const [currPost, setCurrPost] = useState({ comments: [] });
-  const id = useSelector((state) => state.post.value.postId);
+  const id = useSelector((state) => state.postId.value.postId);
 
   useEffect(() => {
     setLoading(true);
