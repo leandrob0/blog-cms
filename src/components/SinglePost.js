@@ -43,8 +43,7 @@ const SinglePost = ({ title, text, pub, id, posts, setPosts }) => {
 
     toggleStatusPost(id,token)
       .then(res => {
-        const newArr = findPostAndReplace(posts, res.post);
-        setPosts(newArr);
+        setPosts(findPostAndReplace(posts, res.post));
       })
       .catch(err => {
         console.log(err);

@@ -1,8 +1,9 @@
 import { NavLink } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch , useSelector } from "react-redux";
 import { logout } from "../../features/user";
 
 const Navbar = () => {
+  const username = useSelector((state) => state.user.value.username);
   const dispatch = useDispatch()
 
   const clickLogout = () => {
@@ -15,7 +16,12 @@ const Navbar = () => {
         <NavLink to="/">Home</NavLink>
       </div>
       <div className="flex justify-center">
+        {username !== "" && 
+        <>
+          <NavLink to="/" className="px-3">Create post</NavLink>
           <p className="px-3 hover:cursor-pointer" onClick={clickLogout} >Logout</p>
+        </>
+        }
       </div>
     </nav>
   );
