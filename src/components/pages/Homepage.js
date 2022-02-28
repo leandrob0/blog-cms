@@ -44,7 +44,7 @@ const Homepage = () => {
         }
         {
           (posts.map(post => {
-            return <SinglePost title={post.title} text={post.text} pub={post.published} id={post._id} key={post._id}/>
+            return <SinglePost title={post.title} text={post.text} pub={post.published} id={post._id} posts={posts} setPosts={setPosts} key={post._id}/>
           }))
         }
       </section>

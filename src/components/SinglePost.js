@@ -1,8 +1,10 @@
 import { useDispatch } from "react-redux";
 import { clickedPost } from "../features/postId";
 import { useNavigate } from "react-router-dom";
+import { deletePost , toggleStatusPost } from "../services/posts";
+import { findPostAndReplace } from "../helpers.js/findAndReplace";
 
-const SinglePost = ({ title, text, pub, id }) => {
+const SinglePost = ({ title, text, pub, id, posts, setPosts }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -15,9 +17,18 @@ const SinglePost = ({ title, text, pub, id }) => {
     return navigate("/post");
   };
 
-  const deletePost = (e) => {
+  const deleteCicked = (e) => {
+
+    const token = JSON.parse(localStorage.getItem("userCMS")).token;
     const id = e.target.parentNode.parentNode.id;
-    console.log(id);
+
+    deletePost(id,token)
+      .then(res => {
+        setPosts(res.posts);
+      })
+      .catch(err => {
+        console.log(err);
+      })
   };
 
   const editPost = (e) => {
@@ -25,9 +36,19 @@ const SinglePost = ({ title, text, pub, id }) => {
     console.log(id);
   };
 
-  const publishPost = (e) => {
+  const statusPost = (e) => {
+
+    const token = JSON.parse(localStorage.getItem("userCMS")).token;
     const id = e.target.parentNode.parentNode.id;
-    console.log(id);
+
+    toggleStatusPost(id,token)
+      .then(res => {
+        const newArr = findPostAndReplace(posts, res.post);
+        setPosts(newArr);
+      })
+      .catch(err => {
+        console.log(err);
+      })
   };
 
   return (
@@ -46,21 +67,21 @@ const SinglePost = ({ title, text, pub, id }) => {
       <div className="px-2 line-clamp-6">
         <p>{text}</p>
       </div>
-      <div>
-        <button className="bg-red-600" onClick={deletePost}>
+      <div className="flex"> 
+        <div className="bg-red-600 py-2 px-3 font-bold rounded w-full hover:cursor-pointer" onClick={deleteCicked}>
           Delete post
-        </button>
-        <button className="bg-blue-600" onClick={editPost}>
+        </div>
+        <div className="bg-blue-600 py-2 px-3 font-bold rounded w-full hover:cursor-pointer" onClick={editPost}>
           Edit post
-        </button>
+        </div>
         {pub ? (
-          <button className="bg-green-600" onClick={publishPost}>
+          <div className="bg-green-600  py-2 px-3 font-bold rounded w-full hover:cursor-pointer" onClick={statusPost}>
             Unpublish post
-          </button>
+          </div>
         ) : (
-          <button className="bg-green-600" onClick={publishPost}>
+          <div className="bg-green-600  py-2 px-3 font-bold rounded w-full hover:cursor-pointer" onClick={statusPost}>
             Publish post
-          </button>
+          </div>
         )}
       </div>
     </article>

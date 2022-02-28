@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 import userReducer from "./features/user";
-import postReducer from "./features/post";
+import postReducer from "./features/postId";
 
 // Redux store created.
 const store = configureStore({
