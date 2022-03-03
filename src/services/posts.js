@@ -1,5 +1,5 @@
 import axios from "axios";
-const baseUrl = "/api/posts";
+const baseUrl = "https://leandroblog-api.herokuapp.com/api/posts";
 
 // Returns X last post published (sorted by update time).
 export const getAllPosts = async (token) => {
