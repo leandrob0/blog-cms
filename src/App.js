@@ -5,6 +5,8 @@ import Navbar from "./components/pages/Nav";
 import Login from "./components/pages/Login";
 import Homepage from "./components/pages/Homepage";
 import PostDetail from "./components/pages/PostDetail";
+import FormCreate from "./components/pages/FormCreate";
+import EditPost from "./components/pages/EditPost";
 
 function App() {
   return (
@@ -27,6 +29,24 @@ function App() {
           element={
             <RequireAuth redirectTo="/login">
               <PostDetail />
+            </RequireAuth>
+          }
+        />
+        <Route
+          exact
+          path="/create-post"
+          element={
+            <RequireAuth redirectTo="/login">
+              <FormCreate />
+            </RequireAuth>
+          }
+        />
+        <Route
+          exact
+          path="/edit-post/:id"
+          element={
+            <RequireAuth redirectTo="/login">
+              <EditPost />
             </RequireAuth>
           }
         />

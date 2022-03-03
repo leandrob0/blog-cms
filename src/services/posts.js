@@ -15,6 +15,22 @@ export const getSpecificPost = async (id) => {
   return result.data;
 };
 
+// Creates a post and shows its page detail.
+export const createPost = async (body, token) => {
+  const result = await axios.post(`${baseUrl}`, body, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return result.data;
+};
+
+// Edits a post.
+export const editPost = async (id, body, token) => {
+  const result = await axios.put(`${baseUrl}/${id}`, body, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return result.data;
+};
+
 // Deletes a post with all its comments and returns all the posts after deletion.
 export const deletePost = async (id, token) => {
   const result = await axios.delete(`${baseUrl}/${id}`, {
@@ -30,3 +46,11 @@ export const toggleStatusPost = async (id, token) => {
   });
   return result.data;
 };
+
+// Deletes a comment from a post.
+export const deleteComment = async (id, token) => {
+  const result = await axios.delete(`api/comment/${id}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return result.data;
+}

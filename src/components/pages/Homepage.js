@@ -25,7 +25,6 @@ const Homepage = () => {
     getAllPosts(token)
       .then((res) => {
         setPosts(res.posts);
-        console.log(res);
       })
       .catch((err) => {
         // I can show an error page telling that the session expired and log in again, for now this works.

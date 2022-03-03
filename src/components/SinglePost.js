@@ -36,7 +36,8 @@ const SinglePost = ({ title, text, pub, id, posts, setPosts }) => {
 
   const editPost = (e) => {
     const id = e.target.parentNode.parentNode.id;
-    console.log(id);
+
+    return navigate(`/edit-post/${id}`);
   };
 
   const statusPost = (e) => {

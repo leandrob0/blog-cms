@@ -18,7 +18,7 @@ const Navbar = () => {
       <div className="flex justify-center">
         {username !== "" && 
         <>
-          <NavLink to="/" className="px-3">Create post</NavLink>
+          <NavLink to="/create-post" className="px-3">Create post</NavLink>
           <p className="px-3 hover:cursor-pointer" onClick={clickLogout} >Logout</p>
         </>
         }

@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { getSpecificPost } from "../../services/posts";
+import { useNavigate } from "react-router-dom";
 
 import Comment from "../Comment";
 
 const PostDetail = () => {
   const [loading, setLoading] = useState(false);
   const [currPost, setCurrPost] = useState({ comments: [] });
-  const id = useSelector((state) => state.postId.value.postId);
+  const id = useSelector((state) => state.post.value.postId);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setLoading(true);
@@ -29,6 +31,7 @@ const PostDetail = () => {
       })
       .catch((err) => {
         console.log(err);
+        return navigate("/login");
       })
       .finally(() => {
         setLoading(false);
@@ -72,6 +75,8 @@ const PostDetail = () => {
               key={comment._id}
               author={comment.author.username}
               text={comment.text}
+              id={comment._id}
+              setComments={setCurrPost}
             />
           );
         })}
